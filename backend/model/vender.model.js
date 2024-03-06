@@ -1,0 +1,50 @@
+import mongoose, { model,Schema } from "mongoose";
+const venderSchema=new Schema ({
+    user:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"User"
+    },
+    products:[
+        {
+            type:mongoose.Schema.Types.ObjectId,
+            ref:"Product"
+        }
+    ],
+    description:{
+        type:String
+    },
+    logoUrl:{
+        type:String
+    },
+    address:{
+        street:String,
+        city:String,
+        state:String,
+        country:String,
+        zipcode:String
+    },
+    contact:{
+        phone:String,
+        email:String,
+        website:String,
+        socialmedia:{
+            facebook:String,
+            twitter:String,
+            instagram:String
+        }
+    },
+    status:{
+        type:String,
+        enum:["pending","approved","rejected"],
+        default:"pending"
+    }
+    ,
+    orders:[
+        {
+            type:mongoose.Schema.Types.ObjectId,
+            ref:"Order"
+        }
+    ]
+});
+const vendermodel=model("Vender",venderSchema);
+export default vendermodel;
